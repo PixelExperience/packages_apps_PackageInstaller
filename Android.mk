@@ -10,17 +10,20 @@ LOCAL_SRC_FILES := \
 
 LOCAL_STATIC_ANDROID_LIBRARIES += \
     android-support-v4 \
-    android-support-annotations \
     android-support-v7-recyclerview \
     android-support-v7-preference \
     android-support-v7-appcompat \
     android-support-v14-preference \
     android-support-v17-preference-leanback \
     android-support-v17-leanback \
+    android-support-car \
+    car-list \
+    car-stream-ui-lib \
     SettingsLib
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    xz-java
+    xz-java \
+    android-support-annotations
 
 LOCAL_PACKAGE_NAME := PackageInstaller
 LOCAL_CERTIFICATE := platform
@@ -35,8 +38,8 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 include $(BUILD_PACKAGE)
 
 ifeq (PackageInstaller,$(LOCAL_PACKAGE_NAME))
-# Use the following include to make our test apk.
-ifeq (,$(ONE_SHOT_MAKEFILE))
-include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+    # Use the following include to make our test apk.
+    ifeq (,$(ONE_SHOT_MAKEFILE))
+        include $(call all-makefiles-under,$(LOCAL_PATH))
+    endif
 endif
