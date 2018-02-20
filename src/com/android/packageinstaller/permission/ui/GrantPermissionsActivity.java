@@ -397,11 +397,17 @@ public class GrantPermissionsActivity extends OverlayTouchActivity
                     // Fallback to system.
                     resources = Resources.getSystem();
                 }
-                int icon = groupState.mGroup.getIconResId();
+
+                Icon icon;
+                try {
+                    icon = Icon.createWithResource(resources, groupState.mGroup.getIconResId());
+                } catch (Resources.NotFoundException e) {
+                    Log.e(LOG_TAG, "Cannot load icon for group" + groupState.mGroup.getName(), e);
+                    icon = null;
+                }
 
                 mViewHandler.updateUi(groupState.mGroup.getName(), groupCount, currentIndex,
-                        Icon.createWithResource(resources, icon), message,
-                        groupState.mGroup.isUserSet());
+                        icon, message, groupState.mGroup.isUserSet());
                 return true;
             }
 
@@ -414,7 +420,7 @@ public class GrantPermissionsActivity extends OverlayTouchActivity
     @Override
     public void onPermissionGrantResult(String name, boolean granted, boolean doNotAskAgain) {
         GroupState groupState = mRequestGrantPermissionGroups.get(name);
-        if (groupState.mGroup != null) {
+        if (groupState != null && groupState.mGroup != null) {
             if (granted) {
                 groupState.mGroup.grantRuntimePermissions(doNotAskAgain,
                         groupState.affectedPermissions);
@@ -535,9 +541,11 @@ public class GrantPermissionsActivity extends OverlayTouchActivity
         for (int i = 0; i < requestedPermCount; i++) {
             String permission = mRequestedPermissions[i];
 
-            if (computePermissionGrantState(callingPackageInfo, permission, permissionPolicy)
-                    == PERMISSION_GRANTED) {
-                mGrantResults[i] = PERMISSION_GRANTED;
+            if (permission != null) {
+                if (computePermissionGrantState(callingPackageInfo, permission, permissionPolicy)
+                        == PERMISSION_GRANTED) {
+                    mGrantResults[i] = PERMISSION_GRANTED;
+                }
             }
         }
     }
