@@ -10,9 +10,13 @@ LOCAL_SRC_FILES := \
 
 LOCAL_STATIC_ANDROID_LIBRARIES += \
     android-support-car \
-    android-support-design \
+    $(ANDROID_SUPPORT_DESIGN_TARGETS) \
     android-support-transition \
-    android-support-v4 \
+    android-support-compat \
+    android-support-media-compat \
+    android-support-core-utils \
+    android-support-core-ui \
+    android-support-fragment \
     android-support-v7-appcompat \
     android-support-v7-preference \
     android-support-v7-recyclerview \
@@ -36,6 +40,7 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 # Comment for now unitl all private API dependencies are removed
 # LOCAL_SDK_VERSION := system_current
+LOCAL_PRIVATE_PLATFORM_APIS := true
 
 include $(BUILD_PACKAGE)
 
