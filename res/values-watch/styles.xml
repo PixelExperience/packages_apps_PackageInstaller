@@ -15,6 +15,6 @@
 -->
 
 <resources>
-    <style name="BreadcrumbText" parent="@android:style/TextAppearance.Material.Body2"/>
-    <style name="TitleText" parent="@android:style/TextAppearance.Material.Subhead"/>
+    <style name="BreadcrumbText" parent="@*android:style/TextAppearancePreferenceCategory"/>
+    <style name="TitleText" parent="@*android:style/TextAppearancePreference"/>
 </resources>

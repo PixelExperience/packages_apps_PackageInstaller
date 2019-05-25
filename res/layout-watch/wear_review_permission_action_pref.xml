@@ -22,4 +22,4 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/wear_permission_review_pref_padding"
         android:paddingBottom="@dimen/wear_permission_review_pref_padding"
-        android:textAppearance="@android:style/TextAppearance.Material.Title" />
+        android:textAppearance="@*android:style/TextAppearanceTitle" />
