@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="16dip"
         android:textSize="20sp"
-        style="@android:style/TextAppearance.Material.Subhead">
+        style="@*android:style/TextAppearancePreference">
     </TextView>
 
 </LinearLayout>

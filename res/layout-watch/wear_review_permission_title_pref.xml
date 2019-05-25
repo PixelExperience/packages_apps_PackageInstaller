@@ -34,5 +34,5 @@
                   android:layout_height="wrap_content"
                   android:paddingLeft="@dimen/diag_preferred_padding"
                   android:paddingRight="@dimen/diag_preferred_padding"
-                  android:textAppearance="@android:style/TextAppearance.Material.Title" />
+                  android:textAppearance="@*android:style/TextAppearanceTitle" />
 </LinearLayout>
